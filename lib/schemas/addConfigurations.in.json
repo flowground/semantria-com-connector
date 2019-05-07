@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "content_type": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {}
+    }
+}

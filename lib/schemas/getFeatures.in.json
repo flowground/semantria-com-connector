@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": {
+        "language": {
+            "required": false,
+            "type": "string"
+        },
+        "content_type": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

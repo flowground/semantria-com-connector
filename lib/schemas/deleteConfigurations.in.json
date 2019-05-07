@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "content_type": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "items": {
+                "type": "string"
+            },
+            "type": "array"
+        }
+    }
+}

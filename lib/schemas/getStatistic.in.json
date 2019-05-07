@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "config_id": {
+            "required": false,
+            "type": "string"
+        },
+        "interval": {
+            "required": false,
+            "type": "string"
+        },
+        "content_type": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

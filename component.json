@@ -1,0 +1,731 @@
+{
+    "title": "Semantria",
+    "description": "Semantria applies Text and Sentiment Analysis to tweets, facebook posts, surveys, reviews or enterprise content.",
+    "docsUrl": "https://semantria.com/support/developer/",
+    "url": "https://api.apis.guru/v2/specs/semantria.com/4.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://api.semantria.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "deleteBlacklistItems": {
+            "main": "./lib/actions/deleteBlacklistItems.js",
+            "title": "Remove items from blacklist",
+            "description": "This method removes certain blacklisted items by their values on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteBlacklistItems.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getBlacklist": {
+            "main": "./lib/actions/getBlacklist.js",
+            "title": "Retrieve blacklisted items",
+            "description": "This method retrieves all backlisted items available on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getBlacklist.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addBlacklist": {
+            "main": "./lib/actions/addBlacklist.js",
+            "title": "Add items to blacklist",
+            "description": "This method adds new unique items to the backlist on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addBlacklist.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateBlacklist": {
+            "main": "./lib/actions/updateBlacklist.js",
+            "title": "Update items in blacklist",
+            "description": "This method updates existing items by unique IDs in the backlist on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateBlacklist.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteCategories": {
+            "main": "./lib/actions/deleteCategories.js",
+            "title": "Remove user categories",
+            "description": "This method removes certain user categories by their IDs on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteCategories.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCategories": {
+            "main": "./lib/actions/getCategories.js",
+            "title": "Retrieve user categories",
+            "description": "This method retrieves list of user categories available on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCategories.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addCategories": {
+            "main": "./lib/actions/addCategories.js",
+            "title": "Add user categories",
+            "description": "This method adds user categories on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addCategories.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateCategories": {
+            "main": "./lib/actions/updateCategories.js",
+            "title": "Updates user categories",
+            "description": "This method updates user categories by unique IDs on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateCategories.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "queueCollection": {
+            "main": "./lib/actions/queueCollection.js",
+            "title": "Queue collection for analysis",
+            "description": "This method queues collection of documents onto the server for analysis. Queued collection of documents analyzes in common context as entire thing. If unique configuration ID provided, Semantria uses settings of that configuration during analysis, in opposite the primary configuration uses. Collection IDs are unique in scope of configuration. If the same ID appears twice, Semantria overrides existing collection with the new Data",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/queueCollection.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "retrieveProcessedCollections": {
+            "main": "./lib/actions/retrieveProcessedCollections.js",
+            "title": "Retrieve collections analysis",
+            "description": "This method retrieves analysis results for processed collections from Semantria. FAILED collections will have FAILED status in response. Semantria responds with limited amount of results per API call. If configuration ID provided, Semantria responds with the collections, which were queued using the same configuration ID, in opposite Primary configuration uses.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/retrieveProcessedCollections.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cancelCollection": {
+            "main": "./lib/actions/cancelCollection.js",
+            "title": "Cancel collection analysis",
+            "description": "This method cancels collection analysis by unique ID on Semantria side if it is waiting for analysis in queue.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cancelCollection.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "receiveCollectionAnalyticData": {
+            "main": "./lib/actions/receiveCollectionAnalyticData.js",
+            "title": "Retrieve collection analysis or its status in queue",
+            "description": "This method retrieves analysis results for documents collection by its unique ID or the collection's status in queue if it did not analyzed yet. Semantria guarantees delivering of all collections back to the client even if they FAILED on Semantria side due to some reason.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/receiveCollectionAnalyticData.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteConfigurations": {
+            "main": "./lib/actions/deleteConfigurations.js",
+            "title": "Remove user configurations",
+            "description": "This method removes certain configuration by unique ID on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteConfigurations.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getConfigurations": {
+            "main": "./lib/actions/getConfigurations.js",
+            "title": "Retrieve user configurations",
+            "description": "This method retrieves all user configurations available on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getConfigurations.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addConfigurations": {
+            "main": "./lib/actions/addConfigurations.js",
+            "title": "Create user configurations",
+            "description": "This method creates configurations on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addConfigurations.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateConfigurations": {
+            "main": "./lib/actions/updateConfigurations.js",
+            "title": "Update user configurations",
+            "description": "This method updates specific configurations by unique IDs on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateConfigurations.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "queueDocument": {
+            "main": "./lib/actions/queueDocument.js",
+            "title": "Queue document for analysis",
+            "description": "This method queues document onto the server for analysis. Queued document analyzes individually and will have its own set of results. If unique configuration ID provided, Semantria uses settings of that configuration during analysis, in opposite the primary configuration uses. Document IDs are unique in scope of configuration. If the same ID appears twice, Semantria overrides existing document with the new Data.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/queueDocument.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "queueBatchOfDocuments": {
+            "main": "./lib/actions/queueBatchOfDocuments.js",
+            "title": "Queue batch of documents for analysis",
+            "description": "This method queues batch of documents for analysis. The rules are the same as for single document mode but here the documents ordered into the batch.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/queueBatchOfDocuments.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "retrieveProcessedDocuments": {
+            "main": "./lib/actions/retrieveProcessedDocuments.js",
+            "title": "Retrieve documents analysis",
+            "description": "This method retrieves analysis results for processed documents from Semantria. FAILED documents will have FAILED status in response. Semantria responds with limited amount of results per API call. If configuration ID provided, Semantria responds with the document, which were queued using the same configuration ID, in opposite Primary.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/retrieveProcessedDocuments.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "cancelDocument": {
+            "main": "./lib/actions/cancelDocument.js",
+            "title": "Cancel document analysis",
+            "description": "This method cancels document analysis by unique ID on Semantria side if it is waiting for analysis in queue.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/cancelDocument.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "receiveDocumentAnalyticData": {
+            "main": "./lib/actions/receiveDocumentAnalyticData.js",
+            "title": "Retrieve document analysis or its status in queue",
+            "description": "This method retrieves analysis results for the single document by its unique ID or the document's status in queue if it did not analyzed yet. Semantria guarantees delivering of all documents back to the client even if they FAILED on Semantria side due to some reason.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/receiveDocumentAnalyticData.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteEntities": {
+            "main": "./lib/actions/deleteEntities.js",
+            "title": "Remove user entities",
+            "description": "This method removes certain user entities by their names on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteEntities.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getEntities": {
+            "main": "./lib/actions/getEntities.js",
+            "title": "Retrieve user entities",
+            "description": "This method retrieves list of user entities available on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getEntities.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addEntities": {
+            "main": "./lib/actions/addEntities.js",
+            "title": "Add user entities",
+            "description": "This method adds user entities on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addEntities.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateEntities": {
+            "main": "./lib/actions/updateEntities.js",
+            "title": "Update user entities",
+            "description": "This method updates user entities by unique IDs on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateEntities.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getFeatures": {
+            "main": "./lib/actions/getFeatures.js",
+            "title": "Retrieve supported features",
+            "description": "This method returns list of supported features per languages supported by Semantria API. Let the users know about API capabilities.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getFeatures.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deletePhrases": {
+            "main": "./lib/actions/deletePhrases.js",
+            "title": "Remove sentiment-bearing phrases",
+            "description": "This method removes certain sentiment-bearing phrases by their names on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deletePhrases.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getPhrases": {
+            "main": "./lib/actions/getPhrases.js",
+            "title": "Retrieve sentiment-bearing phrases",
+            "description": "This method retrieves list of sentiment-bearing phrases available on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getPhrases.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addPhrases": {
+            "main": "./lib/actions/addPhrases.js",
+            "title": "Add sentiment-bearing phrases",
+            "description": "This method adds sentiment-bearing phrases on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addPhrases.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updatePhrases": {
+            "main": "./lib/actions/updatePhrases.js",
+            "title": "Updates sentiment-bearing phrases",
+            "description": "This method updates sentiment-bearing phrases by unique IDs on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updatePhrases.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteQueries": {
+            "main": "./lib/actions/deleteQueries.js",
+            "title": "Remove queries",
+            "description": "This method removes certain queries by their IDs on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteQueries.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getQueries": {
+            "main": "./lib/actions/getQueries.js",
+            "title": "Retrieve queries",
+            "description": "This method retrieves list of queries available on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getQueries.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addQueries": {
+            "main": "./lib/actions/addQueries.js",
+            "title": "Add or update queries",
+            "description": "This method adds queries on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addQueries.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateQueries": {
+            "main": "./lib/actions/updateQueries.js",
+            "title": "Update queries",
+            "description": "This method updates queries by unique IDs on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateQueries.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getStatistic": {
+            "main": "./lib/actions/getStatistic.js",
+            "title": "Retrieve usage statistics",
+            "description": "This method retrieves overall and per configuration usage statistics for specific timeframe. Statistics ordered per available configurations. Available interval values are current <b>hour</b>, <b>day</b>, <b>week</b>, <b>month</b> and <b>year</b>.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getStatistic.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getStatus": {
+            "main": "./lib/actions/getStatus.js",
+            "title": "Retrieve API status",
+            "description": "This method retrieves API status information such as the app version, current API version, supported languages and encodings, the overall service status, etc.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getSubscription": {
+            "main": "./lib/actions/getSubscription.js",
+            "title": "Retrieve subscription details",
+            "description": "This method retrieves user's subscription details that consist of the list of allowed features, configured limits and options on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getSubscription.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteTaxonomy": {
+            "main": "./lib/actions/deleteTaxonomy.js",
+            "title": "Remove taxonomy nodes",
+            "description": "This method removes certain taxonomy nodes by their IDs on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteTaxonomy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTaxonomy": {
+            "main": "./lib/actions/getTaxonomy.js",
+            "title": "Retrieve taxonomy",
+            "description": "This method retrieves list of taxonomy available on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTaxonomy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addTaxonomy": {
+            "main": "./lib/actions/addTaxonomy.js",
+            "title": "Add taxonomy nodes",
+            "description": "This method adds taxonomy nodes on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addTaxonomy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateTaxonomy": {
+            "main": "./lib/actions/updateTaxonomy.js",
+            "title": "Update taxonomy nodes",
+            "description": "This method updates taxonomy nodes on Semantria side.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateTaxonomy.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
